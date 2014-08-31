@@ -1,0 +1,23 @@
+<main>
+	<div class="content">
+		<div class="detail-wrap">
+			<div class="detail" id="detail">
+				{{content}}
+			</div>
+		</div>
+		<div class="sidebar">
+			<ul id="article_list">
+				<li><i>▪</i><a class="art-title{{return $data.__file==='start.html'?' cur':''}}" href="/start.html">立刻开始</a></li>
+				<li><i>▪</i><a class="folder" href="/mok-js/" title="mok-js - JavaScript模块化开发解决方案">mok-js</a></li>
+				<li><a{{return $data.__file==='mok-js/index.html'?' class="cur"':''}} href="/mok-js/" title="mok-js - JavaScript模块化开发解决方案">功能特性</a></li>
+				<li><a{{return $data.__file==='mok-js/conf.html'?' class="cur"':''}} href="/mok-js/conf.html">配置与运行</a></li>
+				<li><a{{return $data.__file==='mok-js/syntax.html'?' class="cur"':''}} href="/mok-js/syntax.html">语法说明与示例</a></li>
+
+				<li><i>▪</i><a class="folder" href="/moktext/" title="moktext - CSS和HTML模块化开发解决方案">moktext</a></li>
+				<li><a{{return $data.__file==='moktext/index.html'?' class="cur"':''}} href="/moktext/" title="moktext - CSS和HTML模块化开发解决方案">功能特性</a></li>
+				<li><a{{return $data.__file==='moktext/conf.html'?' class="cur"':''}} href="/moktext/conf.html">配置与运行</a></li>
+				<li><a{{return $data.__file==='moktext/tags.html'?' class="cur"':''}} href="/moktext/tags.html">模块化标签与示例</a></li>
+			</ul>
+		</div>
+	</div>
+</main>

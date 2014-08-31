@@ -1,0 +1,75 @@
+<include src="../module/article.html" data="article" />
+<mokdata name="article.doc_title">mok-js - 语法说明与示例</mokdata>
+<mokdata name="article.content">
+	<dl>
+		<dt><h2>mok-js语法说明与示例</h2></dt>
+	</dl>
+	<dl>
+		<dt><h3>node形式的模块化</h3></dt>
+		<dd class="tit">1个函数：require - 引用模块</dd>
+		<dd class="tit">1个全局变量：global - 模拟node.js里的global</dd>
+		<dd class="tit">1个变量：mok - 挂载所有模块（不要直接使用mok或用mok做变量名）</dd>
+		<dd>示例：定义一个模块</dd>
+<dd class="eg j-code">
+var rtrimLeft = /^\s\s*/g,
+	rtrimRight = /\s\s*$/g;
+
+function trim(str){
+	return str ? String(str).replace(rtrimLeft, '').replace(rtrimRight, '') : String(str);
+}
+
+module.exports = trim;
+</dd>
+	<dd>示例：引用模块</dd>
+<dd class="eg j-code">
+var trim = require('core/string/trim');	//这里模块路径从项目根路径算起
+console.log(trim('    title   !  '));
+
+var modA = require('./modA');	 //也可以使用相对路径，路径算法跟node.js一样
+</dd>
+		<dd class="cont">node.js路径算法：“./modA”表示modA与当前文件在同一级目录，“../modA”表示modA在上一级目录里，“../mods/modA”表示modA在上一级目录下的mods目录里，依此类推。</dd>
+	</dl>
+
+	<dl>
+		<dt><h3>define形式的模块化</h3></dt>
+		<dd>通俗地说，define形式是指文件都以 define(function(require, exports, module){ ... }) 包裹。</dd>
+		<dd class="tit">也有1个变量：mok - 挂载所有模块（不要直接使用mok或用mok做变量名）</dd>
+		<dd>示例：定义一个模块</dd>
+<dd class="eg j-code">
+define(function(require, exports, module){
+	var rtrimLeft = /^\s\s*/g,
+		rtrimRight = /\s\s*$/g;
+
+	function trim(str){
+		return str ? String(str).replace(rtrimLeft, '').replace(rtrimRight, '') : String(str);
+	}
+	
+	module.exports = trim;
+});
+</dd>
+		<dd>示例：引用模块</dd>
+<dd class="eg j-code">
+define(function(require){
+	var trim = require('core/string/trim');
+	console.log(trim('      content   !    '));
+
+	var modA = require('./modA');
+});
+</dd>
+		<dd class="cont">注：define形式的路径算法与node形式的路径算法一样。</dd>
+	</dl>
+
+	<dl>
+		<dt><h3>定义模块简称</h3></dt>
+		<dd>为了简化对常用模块的引用，可以在项目根路径下建立模块简称文件module_abbr.js，指明常用模块的简称与其所在位置的对应关系。定义模块简称后，就可以通过模块简称引用到模块。</dd>
+		<dd>module_abbr.js文件内容示例：</dd>
+<dd class="eg j-code">
+//模块简称与全称（从项目根路径算起的模块路径）的映射
+module.exports = {
+	'trim': 'core/string/trim',
+	'Pager': 'air/ui/Pager'
+};
+</dd>
+	</dl>
+
+</mokdata>

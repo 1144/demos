@@ -1,0 +1,62 @@
+
+<include src="../module/top.html" /> <!-- 引用模块top.html -->
+<div class="article-wrap">
+	<!-- 引用模块article.html，并向模块传递简单的数据 -->
+	<include src="../module/article.html" data="{title:'共产主义有望在2099年实现 - 文章标题'}" />
+</div>
+
+
+<div class="art-tiltle">{{title}}</div>
+<div class="art-content">文章内容……</div>
+
+
+<div class="article-wrap">
+	<!-- 引用模块article.html，并向模块传递较大的数据 -->
+	<include src="../module/article.html" data="article_data" />
+
+	<mokdata name="article_data.title">共产主义有望在2099年实现 - 文章标题</mokdata>
+
+	<mokdata name="article_data.content">
+		<p>共产主义好~</p>
+		<p>共产主义真是好~</p>
+		<p><img src="{{$root}}pics/xxx.jpg" /></p>
+	</mokdata>
+</div>
+
+
+<div class="art-tiltle">{{title}}</div>
+<div class="art-content">{{content}}</div>
+
+
+&#123;&#123;
+	//这里可以是JS函数体，如下：
+	var html = '';
+	for(var i = 0; i < 10; i++){
+		html += '<div>div '+ i +'</div>';
+	}
+	return html; //return的值将被输出
+&#125;&#125;
+
+&#123;&#123; return $data.isTop ? 'top content' : 'not top' &#125;&#125;
+
+&#123;&#123;
+	//还可以用两个中括号代替引号包着一整块的html
+	if($data.someConditions){
+		return [[
+			<dl class="s-txt">
+				<dt class="caption"></dt>
+				<dd class="time"></dd>
+			</dl>
+		]];
+	}
+&#125;&#125;
+
+
+&#123;&#123;
+	if($data.$preview){
+		return '<link rel="stylesheet" type="text/css" href="'+$data.$root+'css/common.css" />';
+	}
+&#125;&#125;
+&#123;&#123; return $data.$preview ? '<link rel="stylesheet" type="text/css" href="'+$data.$root+'css/top.css" />' : '' &#125;&#125;
+<div>a module</div>
+

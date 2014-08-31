@@ -1,0 +1,76 @@
+<include src="../module/article.html" data="article" />
+<mokdata name="article.doc_title">moktext - 模块化标签与示例</mokdata>
+<mokdata name="article.content">
+	<dl>
+		<dt><h2>CSS模块化标签</h2></dt>
+		<dd class="tit">只有1个标签：@import</dd>
+		<dd class="tit">引用模块代码示例：</dd>
+<dd class="eg j-code">
+@charset "utf-8";
+@import url('../common/base.css'); /* 引入基本样式 */
+
+.base-b-1 { }
+@import url('c.css'); /* 引入同级目录下的c.css */
+.base-b-2 { }
+</dd>
+		<dd class="cont">注：文件路径算法就跟CSS原生的import的路径算法一样。事实上这跟CSS原生的import就是一样的，除了这里的@import标签可以放在css代码里的任意位置！</dd>
+	</dl>
+
+	<dl>
+		<dt><h2>HTML模块化标签与语法</h2></dt>
+		<dd class="tit">2个标签：include - 引用模块, mokdata - 给模块传递数据</dd>
+		<dd class="tit">1个内置对象 $data，2个属性 __preview 和 __file（不能使用这3个字符串作为变量名）</dd>
+		<dd class="tit">示例1：</dd>
+		<dd class="cont"><img src="{{$root}}pic/moktext-eg-1.png" /></dd>
+		<dd class="tit">示例2：</dd>
+		<dd class="cont">
+			<img src="{{$root}}pic/moktext-eg-2.png" /><br/>
+			说明：&#123;&#123;$root&#125;&#125;为输出项目配置里的全局变量$root。
+		</dd>
+		<dd class="tit">&#123;&#123;&#125;&#125;里还能嵌入JS代码（一个JS函数体），返回值将被输出：</dd>
+<dd class="eg j-code">
+&#123;&#123;
+	//这里可以是JS函数体，如下：
+	var html = '';
+	for(var i = 0; i < 10; i++){
+		html += '&lt;div&gt;div '+ i +'&lt;/div&gt;';
+	}
+	return html; //return的值将被输出
+&#125;&#125;
+
+&#123;&#123; return $data.isTop ? 'top content' : 'not top' &#125;&#125;
+
+&#123;&#123;
+	//还可以用两个中括号代替引号包着一整块的html
+	if($data.someConditions){
+		return [[
+			&lt;dl class="s-txt">
+				&lt;dt class="caption">&lt;/dt>
+				&lt;dd class="time">&lt;/dd>
+			&lt;/dl>
+		]];
+	}
+&#125;&#125;
+</dd>
+		<dd class="cont">
+			注意：在JS代码里，<b class="imp">只能通过对象$data</b>访问传递给当前模块的数据，包括项目配置里的全局变量。
+		</dd>
+		<dd class="tit">预览模块：</dd>
+<dd class="eg j-code">
+&#123;&#123;
+	if($data.__preview){
+		return '&lt;link rel="stylesheet" type="text/css" href="'+$data.$root+'css/common.css" />';
+	}
+&#125;&#125;
+
+&#123;&#123; return $data.__preview ? '&lt;link rel="stylesheet" type="text/css" href="'+$data.$root+'css/top.css" />' : '' &#125;&#125;
+
+&lt;div>a module&lt;/div>
+</dd>
+		<dd class="cont">
+			说明：<br/>1、__preview为moktext的内置对象$data的一个属性，预览模块时此属性为true。解决在预览时输出特定的html代码，而这些代码在调试整个页面或构建项目时又不需要输出。<br/>
+			2、__file也是moktext的内置对象$data的一个属性，值为浏览器当前请求的这个文件（包括文件路径）。例如浏览器地址为http://m.com/mokdoc/index.html，则$data.__file的值为“mokdoc/index.html”。
+		</dd>
+	</dl>
+
+</mokdata>

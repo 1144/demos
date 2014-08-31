@@ -1,0 +1,16 @@
+<include src="../module/top.html" data="top" />
+<mokdata name="top.title">{{doc_title}}</mokdata>
+<mokdata name="top.slogan">1</mokdata>
+<mokdata name="top.nav_{{nav}}">cur</mokdata>
+<main>
+	<div class="content">
+		<div class="detail-wrap">
+			<div class="detail" id="detail">
+				{{content}}
+			</div>
+		</div>
+		<div class="sidebar"></div>
+	</div>
+</main>
+<include src="../module/footer.html" data="footer" />
+<mokdata name="footer.js"><script type="text/javascript" src="{{$root}}js/colorCode.js"></script></mokdata>

@@ -1,0 +1,1 @@
+var DICT_LIST = [];

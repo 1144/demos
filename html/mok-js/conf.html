@@ -1,0 +1,59 @@
+<include src="../module/article.html" data="article" />
+<mokdata name="article.doc_title">mok-js - 配置与运行</mokdata>
+<mokdata name="article.content">
+	<dl>
+		<dt><h2>mok-js配置与运行</h2></dt>
+		<dd>打开__config.js配置文件，在projects里添加JS项目的配置，示例如下：</dd>
+<dd class="eg j-code">
+//这里假定项目名叫blog
+'blog': {
+	//path是项目代码路径，相对于__config.js这个文件的路径，也可用绝对路径。
+	//有多个开发分支时，将路径指到对应分支就行（解决多分支切换开发）。
+	path: '../demos/blog/src-define/',
+	build_path: '../demos/blog/build/',
+	compile_mode: 'define',	//node: node模式；define: 'define(function(require, exports, module){});'模式
+	boot_js: 'abc.js',	//启动文件（种子文件）
+	use_base: true,	//是否使用了base.js（base.js是拆分出来的基本库文件或所有页面都用到的文件）
+	charset: 'utf8',	//gbk
+	//格式化上线tag号。参数tag_num为打包时输入的版本号或某种格式的字符串。
+	format_tag: function(tag_num){
+		var t = new Date(), M = t.getMonth()+1, d = t.getDate();
+		return {
+			version: '' + t.getFullYear() + (M>9 ? M : '0'+M) +'/'+ (d>9 ? d : '0'+d) + '/js_' + tag_num + '/',
+			folder_name: 'js_' + tag_num	//存放所有更新的文件的文件夹名，在updated目录下。前后都别加反斜线“/”。
+		};
+	},
+	//惰性压缩列表
+	lazy_list: {
+		//'test.js': true
+	}
+}
+</dd>
+		<dd>接下来再将特定的js请求映射到blog项目，在routes里添加路由规则，示例如下：</dd>
+<dd class="eg j-code">
+//这里假定js资源的域名为blog.cn
+'blog.cn': [
+	{
+		regexp: /^\/js\/(\w+\.js)$/,	//匹配http://blog.cn/js/*.js这样的js请求
+		project: 'blog'	//将请求映射到blog项目，regexp里(\w+\.js)部分的值为映射过去文件名
+	},
+	{
+		regexp: /.*/,	//不满足前面格式的其他任何请求，直接定位到资源位置
+		locate: function(match){
+			//返回相对于__config.js这个文件的路径，也可用绝对路径
+			return '../demos/blog/static' + match[0]; //return 'D:/1144/demos/blog/static' + match[0];
+		}
+	}
+]
+</dd>
+		<dd>这样就把类似<a href="http://blog.cn/js/index.js" target="_blank">http://blog.cn/js/index.js</a>这样的请求映射到了blog项目，以及其他blog.cn域下的请求直接输出对应的文件内容。</dd>
+		<dd>重启mokjs服务器，配置hosts：“127.0.0.1 blog.cn”，浏览器地址栏输入<a href="http://blog.cn/index.html" target="_blank">http://blog.cn/index.html</a>即可看到js模块化的结果。</dd>
+	</dl>
+	<dl>
+		<dt><h3>安装uglify-js</h3></dt>
+		<dd>mok-js构建项目时，默认使用uglify-js进行压缩，所以在构建JS项目前，你需要安装uglify-js。</dd>
+		<dd><b>安装方法1</b>（适用于你安装了npm）：从命令行进入mokjs目录，执行 <b class="imp">npm install</b>。<br/>
+			<b>安装方法2</b>（适用于你没安装npm）：去<a href="/download.html" title="下载mokjs相关的资源">下载中心</a>下载uglify-js压缩包，解压到mokjs目录下的node_modules里。<br/>
+		</dd>
+	</dl>
+</mokdata>

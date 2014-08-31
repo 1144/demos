@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+.common-c-1 { }
+
+@import url('../base/d.css');
+
+.common-c-2 { }
+
+.f-blue{color:#0000FF;}

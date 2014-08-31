@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{title}} - MOKJS</title>
+<meta name="keywords" content="mokjs, mok-js, mokdoc, moktext, 模客, 模客JS, mok, 文档生成工具, CSS模块化, HTML模块化"/>
+<meta name="description" content="专注解决前端模块化开发问题。mok-js解决JavaScript模块化，mokdoc解决项目文档生成，moktext解决CSS和HTML模块化。"/>
+<link rel="Shortcut Icon" href="{{$root}}images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="{{$root}}css/reset.css" />
+<link rel="stylesheet" type="text/css" href="{{$root}}css/main.css" />
+<script type="text/javascript" src="{{$jquery}}"></script>
+</head>
+<body>
+<header>
+	<nav>
+		<ul>
+			<li{{return $data.__file==='index.html'?' class="cur"':''}}><a href="/index.html">首页</a></li>
+			<li{{return $data.__file==='download.html'?' class="cur"':''}}><a href="/download.html">下载</a></li>
+			<li><a href="https://github.com/1144" target="_blank" title="1144@GitHub - 前端框架、工具开源组织">1144</a></li>
+		</ul>
+		<div></div>
+	</nav>
+</header>
+<main>
+	<div class="head">
+		<div class="logo">
+			<a href="http://mokjs.com/" title="mokjs - 前端模块化开发框架">
+				<img alt="mokjs - 前端模块化开发框架" src="{{$root}}images/logo.png" />
+			</a>
+		</div>
+		<div class="slogan">
+			<h1>前端模块化开发框架</h1>{{ return $data.slogan ? [[
+			<div class="mkjs">模客JS</div>
+			<div class="mk3">模块三剑客</div>
+			<div class="mokdoc">mokdoc</div>
+			<div class="mok_js">mok-js</div>
+			<div class="moktext">moktext</div>]] : [[]] }}
+		</div>
+	</div>
+</main>

@@ -1,0 +1,122 @@
+<include src="../module/article.html" data="article" />
+<mokdata name="article.doc_title">moktext - 配置与运行</mokdata>
+<mokdata name="article.content">
+	<dl>
+		<dt><h2>CSS项目配置</h2></dt>
+		<dd>打开__config.js配置文件，在projects里添加CSS项目的配置，示例如下：</dd>
+<dd class="eg j-code">
+//这里假定项目名叫mycss
+'mycss': {
+	type: 'css',	//项目类型
+	path: '../demos/css/',	 //也可以使用绝对路径
+	build_path: '../demos/css-build/',	//构建路径，合并压缩后的css存放的地方
+	ver_js: 'version.js',	 //存放版本和MD5信息的文件，可选
+	charset: 'utf8',	//gbk。css源文件编码
+	//格式化上线tag号，可选
+	format_tag: function(tag_num){
+		var t = new Date(), M = t.getMonth()+1, d = t.getDate();
+		if(!tag_num){
+			var h = t.getHours(), m = t.getMinutes();
+			h<10 && (h = '0'+h);
+			m<10 && (m = '0'+m);
+			tag_num = String(h)+String(m);
+		}
+		//前后都别加反斜线“/”
+		return {
+			version: '' + t.getFullYear() + (M>9 ? M : '0'+M) +'/'+ (d>9 ? d : '0'+d) + '/css_' + tag_num + '/',
+			folder_name: 'css_' + tag_num	//存放有更新的文件的文件夹名，在updated目录下
+		};
+	}
+}
+</dd>
+		<dd>接下来再将特定的css请求映射到上面的mycss项目，在routes里添加路由规则，示例如下：</dd>
+<dd class="eg j-code">
+//这里假定mycss资源的域名为blog.cn
+'blog.cn': [
+	{
+		regexp: /^\/css\/(.+?\.css)$/,	//匹配http://blog.cn/css/*.css这样的css请求
+		//说明：/css/a.css会映射到mycss下的a.css，/css/main/test.css会映射到mycss下的main/test.css
+		project: 'mycss'	//将请求映射到mycss项目
+	}
+]
+</dd>
+		<dd>这样就把类似 http://blog.cn/main/test.css 这样的请求映射到了mycss项目。</dd>
+		<dd>重启mokjs服务器，配置hosts：“127.0.0.1 blog.cn”，地址栏输入 http://blog.cn/main/test.css 即可看到合并后的css代码。</dd>
+	</dl>
+
+	<dl>
+		<dt><h2>HTML项目配置</h2></dt>
+		<dd>打开__config.js配置文件，在projects里添加HTML项目的配置，示例如下：</dd>
+<dd class="eg j-code">
+//这里假定项目名叫myhtml
+'myhtml': {
+	type: 'html',	//项目类型
+	path: '../demos/html/',	//相对于__config.js的相对路径，推荐使用绝对路径
+	build_path: '../demos/www/',	//构建路径
+	data: {	//开发时的全局数据
+		$root: '//s.m.com/',	//图片、CSS、JS资源
+		$jquery: '//libs.baidu.com/jquery/1.11.1/jquery.min.js'
+	},
+	build_data: {	//构建时的全局数据
+		$root: '//mokjs.sinaapp.com/',	 //图片、CSS、JS资源
+		$jquery: '//libs.baidu.com/jquery/1.11.1/jquery.min.js'
+	},
+	charset: 'utf8'	//gbk。html源文件编码
+}
+</dd>
+		<dd>接下来再将特定的html请求映射到上面的myhtml项目，在routes里添加路由规则，示例如下：</dd>
+<dd class="eg j-code">
+//这里假定mycss资源的域名为m.com
+'m.com': [
+	{
+		regexp: /^.+?\.html$/,	 //处理所有.html结尾的请求
+		project: 'myhtml'
+	}, {
+		regexp: /.+?\.pre$/,	//以.pre结尾的请求，映射到预览模块
+		handler: function(match, request, response, reqpath){
+			require('./moktext/html').viewModule(match[0].slice(0,-3)+'html', projects['myhtml'], response);
+		}
+	}, {
+		regexp: /.*?\/$/,	//以/结尾的，请求对应的index.html，实现默认index.html
+		project: 'myhtml',
+		format: function(match){
+			return match[0]+'index.html';
+		}
+	}, {
+		regexp: /.*/,
+		locate: function(match){
+			return projects['myhtml'].path + match[0];
+		}
+	}
+],
+'s.m.com': [	//图片、CSS和JS资源
+	{
+		regexp: /.*/,
+		locate: function(match){
+			return '../demos/www' + match[0];	 //不需要处理的资源，直接定位到资源位置
+		}
+	}
+]
+</dd>
+		<dd>这样就把类似 http://m.com/index.html 这样的请求映射到了myhtml项目。</dd>
+		<dd>重启mokjs服务器，配置hosts：“127.0.0.1 m.com s.m.com”，地址栏输入 http://m.com/index.html 即可看到合并后的html页面。</dd>
+	</dl>
+
+	<dl>
+		<dt><h2>定义HTML项目构建清单</h2></dt>
+		<dd>对于HTML项目，需要在项目根路径下创建一个构建清单文件build-list.js，才能进行项目构建。文件内容示例如下：</dd>
+<dd class="eg j-code">
+//构建清单
+exports.list = {
+	'index.html': 1,
+	'mok-js/index.html': 1,	//值为1，表示要在构建目录里创建相同的目录、相同的文件名
+	'mok-js/conf.html': 1,
+	'mokdoc/dev.html': 'mok/develop.html',	//表示要把mokdoc/dev.html构建成mok/develop.html
+	'moktext/index.html': 1,
+
+	'todo.html': 1
+};
+</dd>
+		<dd class="cont">值不为1，将把文件构建到指定的目录、指定的文件名。<i class="imp">修改构建清单后要重启mokjs服务器才会生效。</i></dd>
+	</dl>
+</mokdata>

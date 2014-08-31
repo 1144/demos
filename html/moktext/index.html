@@ -1,0 +1,47 @@
+<include src="../module/article.html" data="article" />
+<mokdata name="article.doc_title">moktext - CSS和HTML模块化开发解决方案</mokdata>
+<mokdata name="article.content">
+	<dl>
+		<dt><h2>moktext - CSS和HTML模块化开发解决方案</h2></dt>
+	</dl>
+	<dl>
+		<dt><h3>CSS模块化</h3></dt>
+		<dd class="tit"><h3>原生的模块引用语法</h3></dd>
+		<dd class="cont">@import url('../modules/top.css');</dd>
+		<dd class="tit"><h3>1个命令完成文件合并和压缩</h3></dd>
+		<dd class="cont">127.0.0.1/-你的项目名-b</dd>
+		<dd class="tit"><h3>1个命令切换到测试压缩文件模式</h3></dd>
+		<dd class="cont">127.0.0.1/-你的项目名-min</dd>
+		<dd class="tit"><h3>版本管理与差异化上线</h3></dd>
+		<dd class="cont">建立一个版本控制文件，每次上线前打包压缩后moktext自动检测出有修改的文件，可实现有差异的CSS的才上线。</dd>
+		<dd class="tit"><h3>实时预览能力</h3></dd>
+		<dd class="cont">修改了CSS模块，刷新页面即可看到修改后的效果。</dd>
+	</dl>
+	<dl>
+		<dt><h3>HTML模块化</h3></dt>
+		<dd class="tit"><h3>简单的模块引用语法</h3></dd>
+		<dd class="cont">2个标签：include, mokdata<br/>
+			引用模块：&lt;include src="../module/top.html" data="top" /&gt;<br/>
+			mokdata用于向被引用的模块传递数据。
+			</dd>
+		<dd class="tit"><h3>简单强大的数据传递方法与模板语法</h3></dd>
+		<dd class="cont">传递数据：&lt;mokdata name="top.title"&gt;moktext - CSS与HTML模块化&lt;/mokdata&gt;</dd>
+		<dd class="tit"><h3>一个命令完成页面构建</h3></dd>
+		<dd class="cont">127.0.0.1/-你的项目名-b</dd>
+		<dd class="tit"><h3>实时预览能力</h3></dd>
+		<dd class="cont">修改了模块，刷新页面即可看到修改后的效果。</dd>
+	</dl>
+	<dl>
+		<dt><h2>计划增加的特性</h2></dt>
+		<dd>目前计划后续会增加以下功能，如有必要，会将更多功能列入开发计划：</dd>
+		<dd><table>
+			<tr class="pth"><td width="300px">功能特性</td><td>状态</td><td>列入计划时间</td></tr>
+			<tr><td class="pn">CSS支持Sass、LESS的预处理能力</td><td>未开始</td><td>2014-08-10</td></tr>
+			<tr><td class="pn">&nbsp;</td><td></td><td></td></tr>
+			<tr><td class="pn">&nbsp;</td><td></td><td></td></tr>
+			<tr><td class="pn">&nbsp;</td><td></td><td></td></tr>
+			<tr><td class="pn">&nbsp;</td><td></td><td></td></tr>
+			<tr><td class="pn">&nbsp;</td><td></td><td></td></tr>
+		</table></dd>
+	</dl>
+</mokdata>

@@ -1,0 +1,94 @@
+<include src="../module/article.html" data="article" />
+<mokdata name="article.doc_title">从这里开始使用mokjs</mokdata>
+<mokdata name="article.content">
+	<dl>
+		<dt><h2>从这里开始使用mokjs</h2></dt>
+	</dl>
+	<dl>
+		<dt><h3>搭建环境与启动</h3></dt>
+		<dd>第一步：从<a href="https://github.com/1144" target="_blank" title="前端框架、工具开源组织">1144@GitHub</a>或点击<a href="{{$root}}zip/mokjs-0.1.0.zip" title="下载mokjs项目">mokjs-0.1.0.zip</a>下载mokjs项目。</dd>
+		<dd>第二步：安装node.js（版本高于0.8.6），Windows系统也可以直接从<a target="_blank" href="http://nodejs.org/download/">node.js官网</a>下载独立运行文件node.exe放到mokjs目录里。</dd>
+		<dd>搭建完成！</dd>
+		<dd>
+			从命令行启动mokjs：进入mokjs目录，运行命令 <b class="imp">node mok</b>。<br/>
+			Windows系统下，可以直接双击 mok.cmd 文件启动mokjs。
+		</dd>
+	</dl>
+	<dl>
+		<dt><h3>Hello World</h3></dt>
+		<dd>从<a href="https://github.com/1144" target="_blank" title="前端框架、工具开源组织">1144@GitHub</a>或点击<a href="{{$root}}zip/demos-0.1.0.zip" title="下载mokjs的示例包demos">demos-0.1.0.zip</a>下载mokjs的示例包demos，跟mokjs放在同一目录里。</dd>
+		<dd>参照上面的方法启动mokjs，打开hosts文件配置这几个host：<b class="imp">127.0.0.1 blog.cn m.com s.m.com</b>。</dd>
+		<dd>点击<a href="http://blog.cn/index.html" target="_blank">http://blog.cn/index.html</a>即可看到JS模块化的运行结果。</dd>
+		<dd>点击<a href="http://m.com/" target="_blank">http://m.com/</a>即可看到HTML模块化的运行结果。</dd>
+		<dd>示例的目录结构说明：</dd>
+<dd class="eg j-comment" style="line-height:20px; font-family:tahoma;">
+demos/
+   ├─ blog/		- JS模块化示例
+   │   ├─ build		- 构建目录
+   │   ├─ src-node	- 采用node形式实现模块化的项目源码
+   │   ├─ src-define    - 采用define形式实现模块化的项目源码
+   │   └─ static	    - 静态资源（HTML页面、图片等）
+   ├─ css/		 - CSS模块化示例
+   ├─ css-build/	- CSS项目构建目录
+   ├─ html/		- HTML模块化示例
+   ├─ www/		- HTML项目构建目录
+   ├─ air/		   - 提取注释生成文档的注释示例
+   └─ air-doc/	   - 文档数据保存路径
+</dd>
+<script type="text/javascript">
+!function(){
+	var rep = {'  ':' &nbsp;', '\t':'<i class="t"></i> &nbsp; &nbsp;', '\n':'<br/>', '<':'&lt;', '>':'&gt;'};
+			$('.j-comment').each(function(i, eg){
+				eg.innerHTML = eg.innerHTML.replace(/^\n/, '').replace(/\t|  |\n|<|>/g, function(m){
+					return rep[m];
+				});
+			});
+}();
+</script>
+	</dl>
+	<dl>
+		<dt><h3>配置</h3></dt>
+		<dd>
+			所有配置都在__config.js里，包括mokjs服务器的端口号和各种项目配置。<br/>
+			mok-js项目的配置<a href="/mok-js/conf.html" title="mok-js - 配置与运行">请看这里</a>，
+			mokdoc项目的配置<a href="/mokdoc/conf.html" title="mokdoc - 配置与运行">请看这里</a>，
+			moktext项目的配置<a href="/moktext/conf.html" title="moktext - 配置与运行">请看这里</a>。<br/>
+			<i class="imp">如果你的80端口已被占用</i>，请修改__config.js里的exports.http_port为你想用的端口号。
+		</dd>
+		<dd>注意：每次修改配置文件之后需要重启mokjs服务器才能使配置生效。</dd>
+	</dl>
+	<dl>
+		<dt><h3>内建命令</h3></dt>
+		<dd>
+			所有命令都是在浏览器地址里输入执行，不需打开命令窗口。<br/>
+			执行命令之前，需要打开hosts文件，配置这个host：<b class="imp">127.0.0.1 mokjs</b>
+		</dd>
+		<dd>
+			<b>1、合并压缩项目文件（适用于JS、CSS项目）</b><br/>
+			　　<b class="imp">mokjs/-项目名称-b</b> 或 <b class="imp">mokjs/-项目名称-build</b><br/>
+　　例如：mokjs/-blog-b<br/>
+　　压缩还支持传入版本号（或叫tag号），以及是否使用惰性模式。<br/>
+　　命令：mokjs/-项目名称-b-v=版本号-惰性模式<br/>
+　　例如：<br/>
+　　　　mokjs/-blog-b-v=18   这里版本号是18<br/>
+　　　　mokjs/-blog-b-v=18-lazy   版本号18，lazy表示使用惰性压缩<br/>
+　　　　mokjs/-blog-b-lazy    不要版本号，惰性压缩<br/>
+　　<b>惰性压缩</b>：在一个项目里，有些文件可能很长时间不会修改到它（比如基础文件），这些文件就没必要每次合并上线时候都压缩一遍。于是为了提高合并压缩效率，可以将长时间不会修改的文件放到惰性列表里（参见mokjs的配置说明），采用惰性模式合并压缩项目的时候就不会再压缩这些文件（直接视为无更改）。</dd>
+		<dd>
+			<b>2、构建HTML项目（适用于HTML项目）</b><br/>
+				　　<b class="imp">mokjs/-项目名称-b</b> 或 <b class="imp">mokjs/-项目名称-build</b></dd>
+		<dd>
+			<b>3、切换测试压缩文件模式（适用于JS、CSS项目）</b><br/>
+				　　<b class="imp">mokjs/-项目名称-min</b><br/>
+				　　例如：mokjs/-blog-min<br/>
+　　合并压缩完项目文件之后，可以执行这个命令，之后浏览器在请求项目js或css文件的时候，请求到的就是合并压缩过的文件，相当于模拟线上测试。再次执行这个命令，可以取消测试压缩文件，进入开发调试状态。</dd>
+		<dd>
+		<dd>
+			<b>4、生成项目文档（适用于JS项目）</b><br/>
+				　　<b class="imp">mokjs/-项目名称-doc</b>
+		</dd>
+		<dd>
+　　当然，也可以不配置mokjs这个host，其实可以把以上命令中的mokjs替换成任何一个指向127.0.0.1的域名，或者直接使用127.0.0.1都行。<i class="imp">端口号不是80的时候请加上端口号</i>。
+		</dd>
+	</dl>
+</mokdata>

@@ -1,0 +1,85 @@
+body{background:#e5e5e5;font-size:14px;line-height:1.5em;}
+nav,main,footer{margin:0 20px; clear:both; font-family:verdana,"Microsoft YaHei";}
+a{color:#0000FF; text-decoration:none;} a:hover{text-decoration:underline;}
+li{ list-style:none;}
+h1 {font-size: 2em;}
+h2 {font-size: 1.5em;}
+h3 {font-size: 1.25em;}
+h4 {font-size: 1em;}
+h1, h2, h3, h4{font-weight:bold; margin-bottom:0.5em;}
+b{font-weight:bold}
+dd{margin-left:30px;}
+.eg .k{color:#00F}
+.eg .o{color:#F00}
+.eg .s{color:#08AC08}
+.eg .m{color:#06ACFC}
+.eg .n{color:#B38808}
+.eg .c{color:#999}
+.eg .t{display:inline-block; width:8px;}
+.imp{color:#F00; margin:0 3px}
+
+main,.head,footer{max-width:1400px; min-width:320px; margin:0 auto;}
+header{ background:#1B1B1B;}
+header nav{ height:33px;}
+header nav ul{ float:right;}
+header nav ul li{ float:left; padding:6px 12px; border-left:1px solid rgba(255, 255, 255, 0.098); border-right: 1px solid rgba(0, 0, 0, 0.35);}
+header nav ul li a{ text-decoration:none; color:#fff; text-shadow: 1px 1px 0 #333;}
+header nav ul li:hover{ background:#333;}
+header nav ul li.cur{background:#555;}
+
+main{padding:0 20px;}
+.head{height:85px; position:relative;}
+.head .logo{width:200px; padding-top:5px;}
+.slogan{width:1000px; margin:0 auto;}
+.slogan h1{position:absolute; width:300px; height:40px; left:229px; top:32px; color:#3827A3; text-shadow:#FFF 1px 1px 1px;}
+.slogan .mkjs{position:absolute; width:77px; height: 35px; border:2px solid #F00; left:560px; top:25px; font-size:24px; color:#F00; line-height:1.4em;
+    transform:rotate(-18deg);}
+.slogan .mk3{position:absolute; width:110px; height:40px; left:650px; top:27px; font-size:16px; color:#F0D1BC; transform:rotate(18deg);}
+.slogan .mokdoc{position:absolute; width:146px; height:40px; border:2px dashed #EB8ADB; left:770px; top:23px; font-size:40px; color: #DE2DEB;
+    transform:rotate(9deg); font-family:Arial; line-height:1em;}
+.slogan .mok_js{position:absolute; width:150px; height:50px; left:700px; top:12px; font-size:32px; color:#00F; font-family:Arial; font-weight:bold;
+    transform:rotate(-37deg);}
+.slogan .moktext{position:absolute; width:150px; height:50px; left:860px; top:17px; font-size: 32px; color:#DE6E23;}
+
+.content{ background:#FFF; border:1px solid #dcdcdc; padding:10px 14px; border-radius:0 0 5px 5px;
+    height:auto; min-height:350px; overflow:auto;}
+.sidebar {float:left; width:240px; overflow:hidden;}
+.sidebar i{color:#BBB}
+.sidebar a{margin-left:30px; font-size:1.1em; line-height:1.7em; color:#00BB00; font-weight:bold;}
+.sidebar a.folder{margin-left:8px; font-size:1.2em; color:#555;}
+.sidebar a.art-title{margin-left:8px; color:#00BB00;}
+.sidebar a.cur{color:#BB3C00;}
+.detail-wrap{float:right; width:100%; margin-left:-240px;}
+.detail {margin-left:240px; border-left:6px solid #eee; padding-left:15px; min-height:350px; overflow:hidden; height:100%;}
+.content .ids a{margin-right:25px; font-size:1.2em;}
+
+#detail dl{margin:8px 0 25px;}
+#detail dt{margin-bottom:10px;}
+#detail dt id{font-weight:bold;font-size:1.5em;color:#66CC00;}
+#detail dt h2{color:#66CC00;}
+#detail dt arg{font-weight:bold;font-size:1.3em;color:#a6c628;}
+#detail dt span{color:#999; margin-left:35px;}
+#detail dt span a{color:#999;text-decoration:underline;}
+
+#detail dd{font-size:1.1em;line-height:24px;margin-bottom:8px;}
+#detail dd a{margin-left:3px;margin-right:3px;}
+#detail .tit{font-weight:bold;color:#666;margin-top:10px;}
+#detail .tit2{font-weight:bold;color:#666;margin-top:15px;margin-bottom:0;}
+#detail .cont{padding-left:33px;margin-bottom:15px;}
+#detail table{border-collapse:collapse;border:#ccc solid 1px;}
+#detail table td{border:#ccc solid 1px;padding:3px 8px;vertical-align:top;}
+#detail table .pth{background-color:#eee;text-align:center;}
+#detail table .pn{font-weight:bold;}
+#detail table p{padding-left:31px;}
+#detail .eg{border:#ccc solid 1px;margin:5px 0 5px 63px; padding:5px 12px; background-color:#eee;border-radius:5px;}
+#detail .pic{border:#eee solid 1px;padding:3px;margin:5px;}
+
+#list {word-break:break-all;}
+#list .datalist li{display:inline-block; margin-right:2%; width:48%; height:1.5em; overflow:hidden;}
+#list .id2desc a{font-size:1.2em;width:60px;}
+
+footer{margin:15px 0;}
+.line{ border-top:1px solid #dcdcdc; background:#fff; margin:0 20px;}
+footer ul{list-style:none; padding:25px; float:right;}
+footer ul li{float:left; margin-right:1.6em; color:#999;}
+footer ul li a{color:#88F;}
