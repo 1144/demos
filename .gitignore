@@ -1,4 +1,7 @@
-
-blog/build/all
+blog/build/main
 blog/build/min
 blog/build/updated
+
+css-build/main
+css-build/min
+css-build/updated
