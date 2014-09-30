@@ -9,8 +9,8 @@ mokjs的所有示例代码
 demos/  
    ├─ blog/		- JS模块化示例  
    │   ├─ build		- 构建目录  
-   │   ├─ src-node	- 采用node形式实现模块化的项目源码  
-   │   ├─ src-define    - 采用define形式实现模块化的项目源码  
+   │   ├─ src-node	- 遵循CommonJS Modules模块化规范的项目源码  
+   │   ├─ src-define    - 遵循CMD模块化规范的项目源码  
    │   └─ static	    - 静态资源（HTML页面、图片等）  
    ├─ css/		 - CSS模块化示例  
    ├─ css-build/	- CSS项目构建目录  
