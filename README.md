@@ -1,10 +1,8 @@
-##demos
+## demos
 
 mokjs的所有示例代码
 
-##Version: 0.0.1
-
-##目录结构说明
+## 目录结构说明
 
 demos/
    ├─ blog/		- JS模块化示例  
@@ -15,6 +13,4 @@ demos/
    ├─ css/		  - CSS模块化示例  
    ├─ css-build/	- CSS项目构建目录  
    ├─ html/		 - HTML模块化示例  
-   ├─ www/		- HTML项目构建目录  
-   ├─ air/		   - 提取注释生成文档的注释示例  
-   └─ air-doc/	   - 文档数据保存路径  
+   └─ www/		 - HTML项目构建目录  
